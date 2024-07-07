@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class PermutationsBacktracking{
+    private static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Elements in set:");
+        int n = scanner.nextInt();
+        int[] nums = new int[n];
+
+        System.out.println("Elements of set:");
+        for (int i = 0;i<n;i++){
+            nums[i] = scanner.nextInt();
+        }
+        System.out.println("Permutations of set:");
+        gen_Per(nums,0,n-1);
+        scanner.close();
+    }
+
+    private static void gen_Per(int[] nums,int left, int right){
+        if(left == right){
+            printArray(nums);
+        }
+        else{
+            for(int i=left;i<=right;i++){
+                swap(nums,left,i);
+                gen_Per(nums,left+1,right);
+                swap(nums,left,i);
+            }
+        }
+    }
+
+    private static void swap(int[],nums,int i,int j){
+        int temp = nums[j];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    privete static void printArray(int[] nums){
+        for(num : nums){
+            System.out.print(num+"");
+        }
+        System.out.println();
+    }
+}
